@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI API Gateway - Мощный шлюз для ИИ моделей</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="gradient-text">AI API Gateway</span>
+                        <br>Ваш мост к миру ИИ
+                    </h1>
+                    <p class="hero-description">
+                        Современный и надежный шлюз для доступа к передовым моделям искусственного интеллекта. 
+                        Простая интеграция, высокая производительность и безграничные возможности для ваших проектов.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('features')">
+                            Узнать больше
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('api-docs')">
+                            API документация
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card">
+                        <div class="card-header">
+                            <div class="status-indicator"></div>
+                            <span>API Gateway</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="api-endpoint">
+                                <span class="method">GET</span>
+                                <span class="url">/models</span>
+                            </div>
+                            <div class="response-preview">
+                                <div class="json-line">
+                                    <span class="key">"name":</span>
+                                    <span class="value">"openai"</span>
+                                </div>
+                                <div class="json-line">
+                                    <span class="key">"description":</span>
+                                    <span class="value">"GPT-4.1 Mini"</span>
+                                </div>
+                                <div class="json-line">
+                                    <span class="key">"status":</span>
+                                    <span class="value success">"active"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="section-header">
+                <h2>Почему выбирают нас</h2>
+                <p>Передовые технологии для современных разработчиков</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Высокая скорость</h3>
+                    <p>Оптимизированная архитектура обеспечивает минимальные задержки и максимальную производительность</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Безопасность</h3>
+                    <p>Современные протоколы шифрования и защиты данных гарантируют безопасность ваших запросов</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Простая интеграция</h3>
+                    <p>RESTful API с понятной документацией позволяет быстро интегрировать сервис в любой проект</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Глобальная доступность</h3>
+                    <p>Распределенная инфраструктура обеспечивает стабильную работу по всему миру</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Аналитика</h3>
+                    <p>Подробная статистика использования и мониторинг производительности в реальном времени</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Гибкость</h3>
+                    <p>Поддержка множества ИИ моделей и возможность настройки под ваши специфические потребности</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Documentation Section -->
+        <section id="api-docs" class="api-docs">
+            <div class="section-header">
+                <h2>API Документация</h2>
+                <p>Простые и понятные примеры использования</p>
+            </div>
+            <div class="docs-content">
+                <div class="endpoint-example">
+                    <h3>Получить список доступных моделей</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="method-badge get">GET</span>
+                            <span class="endpoint">/models</span>
+                            <button class="copy-btn" onclick="copyToClipboard('models-example')">Копировать</button>
+                        </div>
+                        <pre id="models-example"><code>curl -X GET "https://your-domain.vercel.app/models" \
+  -H "Content-Type: application/json"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="endpoint-example">
+                    <h3>Отправить запрос к модели</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="method-badge post">POST</span>
+                            <span class="endpoint">/chat</span>
+                            <button class="copy-btn" onclick="copyToClipboard('chat-example')">Копировать</button>
+                        </div>
+                        <pre id="chat-example"><code>curl -X POST "https://your-domain.vercel.app/chat" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "openai",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Привет! Как дела?"
+      }
+    ]
+  }'</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="99.9">0</div>
+                    <div class="stat-label">% Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">мс Средняя задержка</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="20">0</div>
+                    <div class="stat-label">+ Поддерживаемых моделей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label">+ Запросов в секунду</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI API Gateway</h4>
+                    <p>Современное решение для интеграции с ИИ моделями</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Ресурсы</h4>
+                    <ul>
+                        <li><a href="#api-docs">Документация</a></li>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="/models">API Endpoints</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="#">Техническая поддержка</a></li>
+                        <li><a href="#">Сообщество</a></li>
+                        <li><a href="#">Статус сервиса</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI API Gateway. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
