@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FullAI - Интерактивные примеры</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .example-tester {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-form {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .test-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .test-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            min-height: 100px;
+            white-space: pre-wrap;
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #ffd89b;
+            overflow-x: auto;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #667eea;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .preset-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .preset-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .preset-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .preset-card h4 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .preset-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <span class="logo-text">FullAI</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="examples.html" class="nav-link">Примеры</a>
+                    <a href="/models" class="nav-link" target="_blank">API</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <section class="hero" style="padding: 120px 0 60px;">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Интерактивные примеры</span>
+                        <br>Тестирование API
+                    </h1>
+                    <p class="hero-description">
+                        Попробуйте различные модели ИИ прямо в браузере. Отправляйте запросы и получайте ответы в реальном времени.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preset Examples -->
+        <section class="examples-section">
+            <div class="section-header">
+                <h2>Готовые примеры</h2>
+                <p>Нажмите на карточку для быстрого тестирования</p>
+            </div>
+            
+            <div class="preset-examples">
+                <div class="preset-card" onclick="loadPreset('text', 'deepseek', 'Напиши короткое стихотворение о технологиях')">
+                    <h4>📝 Текстовый запрос</h4>
+                    <p>DeepSeek V3 - генерация стихотворения</p>
+                </div>
+                
+                <div class="preset-card" onclick="loadPreset('text', 'grok', 'Какая погода в Москве сегодня?')">
+                    <h4>🔍 Поиск информации</h4>
+                    <p>Grok-3 Mini - актуальные данные</p>
+                </div>
+                
+                <div class="preset-card" onclick="loadPreset('text', 'deepseek-r1', 'Реши уравнение: 2x + 5 = 15')">
+                    <h4>🧮 Математическая задача</h4>
+                    <p>DeepSeek R1 - логическое мышление</p>
+                </div>
+                
+                <div class="preset-card" onclick="loadPreset('text', 'searchgpt', 'Новости технологий за неделю')">
+                    <h4>📰 Поиск новостей</h4>
+                    <p>SearchGPT - актуальная информация</p>
+                </div>
+                
+                <div class="preset-card" onclick="loadPreset('audio', 'openai-audio', 'Прочитай стихотворение Пушкина', 'nova')">
+                    <h4>🎙️ Аудио генерация</h4>
+                    <p>GPT-4o Audio - озвучка текста</p>
+                </div>
+                
+                <div class="preset-card" onclick="loadPreset('text', 'midijourney', 'Создай грустную мелодию в стиле jazz')">
+                    <h4>🎵 Музыкальное творчество</h4>
+                    <p>MIDIjourney - генерация MIDI</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Tester -->
+        <section class="api-section">
+            <div class="section-header">
+                <h2>Интерактивный тестер API</h2>
+                <p>Создавайте и тестируйте собственные запросы</p>
+            </div>
+            
+            <div class="example-tester">
+                <form class="test-form" id="apiForm">
+                    <div class="form-group">
+                        <label for="model">Модель:</label>
+                        <select id="model" required>
+                            <option value="">Выберите модель</option>
+                            <optgroup label="Текстовые модели">
+                                <option value="deepseek">DeepSeek V3</option>
+                                <option value="deepseek-r1">DeepSeek R1 (Reasoning)</option>
+                                <option value="grok">Grok-3 Mini</option>
+                            </optgroup>
+                            <optgroup label="Мультимодальные модели">
+                                <option value="mistral">Mistral Small 3.1</option>
+                                <option value="openai">OpenAI GPT-4.1 Mini</option>
+                                <option value="o3">OpenAI O3 (Reasoning)</option>
+                            </optgroup>
+                            <optgroup label="Аудио модели">
+                                <option value="openai-audio">GPT-4o Audio</option>
+                                <option value="hypnosis">Hypnosis Tracy</option>
+                            </optgroup>
+                            <optgroup label="Специальные модели">
+                                <option value="searchgpt">SearchGPT</option>
+                                <option value="bidara">BIDARA (NASA)</option>
+                                <option value="midijourney">MIDIjourney</option>
+                                <option value="evil">Evil (Uncensored)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="query">Запрос:</label>
+                        <textarea id="query" rows="4" placeholder="Введите ваш запрос..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group" id="voiceGroup" style="display: none;">
+                        <label for="voice">Голос (для аудио моделей):</label>
+                        <select id="voice">
+                            <option value="alloy">Alloy</option>
+                            <option value="echo">Echo</option>
+                            <option value="fable">Fable</option>
+                            <option value="onyx">Onyx</option>
+                            <option value="nova" selected>Nova</option>
+                            <option value="shimmer">Shimmer</option>
+                            <option value="coral">Coral</option>
+                            <option value="verse">Verse</option>
+                            <option value="ballad">Ballad</option>
+                            <option value="ash">Ash</option>
+                            <option value="sage">Sage</option>
+                            <option value="amuch">Amuch</option>
+                            <option value="dan">Dan</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="test-btn" id="submitBtn">
+                        Отправить запрос
+                    </button>
+                </form>
+                
+                <div id="result" class="result-area" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- API Status -->
+        <section class="technical-section">
+            <div class="section-header">
+                <h2>Статус API</h2>
+                <p>Мониторинг состояния сервиса</p>
+            </div>
+            
+            <div class="example-tester">
+                <div id="statusInfo">
+                    <p>Загрузка статуса...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FullAI</h4>
+                    <p>Интерактивные примеры использования API</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Ресурсы</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="/models" target="_blank">API Endpoints</a></li>
+                        <li><a href="/health" target="_blank">Health Check</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FullAI. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Load preset examples
+        function loadPreset(type, model, query, voice = null) {
+            document.getElementById('model').value = model;
+            document.getElementById('query').value = query;
+            
+            if (voice) {
+                document.getElementById('voice').value = voice;
+                document.getElementById('voiceGroup').style.display = 'block';
+            } else {
+                document.getElementById('voiceGroup').style.display = 'none';
+            }
+            
+            // Scroll to form
+            document.querySelector('.example-tester').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        
+        // Handle form submission
+        document.getElementById('apiForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const model = document.getElementById('model').value;
+            const query = document.getElementById('query').value;
+            const voice = document.getElementById('voice').value;
+            
+            if (!model || !query) {
+                alert('Пожалуйста, заполните все поля');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const resultArea = document.getElementById('result');
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Отправка...';
+            resultArea.style.display = 'block';
+            resultArea.textContent = 'Отправка запроса...';
+            
+            try {
+                // Build URL
+                let url = `https://fullai.vercel.app/${encodeURIComponent(query)}?model=${model}`;
+                if (voice && model.includes('audio')) {
+                    url += `&voice=${voice}`;
+                }
+                
+                const response = await fetch(url);
+                const data = await response.text();
+                
+                resultArea.textContent = `URL: ${url}\n\nОтвет:\n${data}`;
+            } catch (error) {
+                resultArea.textContent = `Ошибка: ${error.message}`;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить запрос';
+            }
+        });
+        
+        // Show/hide voice selector based on model
+        document.getElementById('model').addEventListener('change', function() {
+            const model = this.value;
+            const voiceGroup = document.getElementById('voiceGroup');
+            
+            if (model.includes('audio')) {
+                voiceGroup.style.display = 'block';
+            } else {
+                voiceGroup.style.display = 'none';
+            }
+        });
+        
+        // Load API status
+        async function loadStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                
+                const statusInfo = document.getElementById('statusInfo');
+                statusInfo.innerHTML = `
+                    <h3 style="color: white; margin-bottom: 1rem;">Статус сервиса</h3>
+                    <div style="display: grid; gap: 1rem;">
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                            <strong style="color: white;">Сервис:</strong> ${data.service}
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                            <strong style="color: white;">Статус:</strong> <span style="color: #10b981;">${data.status}</span>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                            <strong style="color: white;">Целевой API:</strong> ${data.target_api.status}
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('statusInfo').innerHTML = `
+                    <p style="color: #ef4444;">Ошибка загрузки статуса: ${error.message}</p>
+                `;
+            }
+        }
+        
+        // Load status on page load
+        document.addEventListener('DOMContentLoaded', loadStatus);
+    </script>
+</body>
+</html> 

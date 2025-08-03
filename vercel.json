@@ -4,7 +4,10 @@
     {
       "src": "src/main.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      "config": { 
+        "maxLambdaSize": "15mb", 
+        "runtime": "python3.9" 
+      }
     },
     {
       "src": "src/static/**",
@@ -13,11 +16,15 @@
   ],
   "routes": [
     {
-      "src": "/models",
+      "src": "/health",
       "dest": "src/main.py"
     },
     {
-      "src": "/(.*)",
+      "src": "/api/status",
+      "dest": "src/main.py"
+    },
+    {
+      "src": "/models",
       "dest": "src/main.py"
     },
     {
@@ -25,8 +32,44 @@
       "dest": "src/static/$1"
     },
     {
-      "src": "/",
-      "dest": "src/static/index.html"
+      "src": "/(.*)",
+      "dest": "src/main.py"
+    }
+  ],
+  "functions": {
+    "src/main.py": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
     }
   ]
 }
