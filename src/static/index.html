@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKGPT & FullAI - Полная документация ИИ моделей</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.5)); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+            position: relative;
+        }
+
+        .section h2::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #ff00ff;
+        }
+
+        .section h4 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: #00ff88;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Code Blocks */
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .code-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        code {
+            color: #00ff88;
+        }
+
+        .inline-code {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #00ff88);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .card h4 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        /* Features List */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: #00d4ff;
+        }
+
+        /* Search */
+        .search-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #b0b0b0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .badges {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff00ff, #00d4ff);
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.2), rgba(255, 0, 255, 0.2));
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Status indicators */
+        .status-online {
+            color: #00ff88;
+        }
+
+        .status-warning {
+            color: #ffaa00;
+        }
+
+        .status-error {
+            color: #ff4444;
+        }
+
+        /* Model tags */
+        .model-tag {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .model-tag.multimodal {
+            background: rgba(255, 0, 255, 0.2);
+            color: #ff00ff;
+            border-color: rgba(255, 0, 255, 0.3);
+        }
+
+        .model-tag.audio {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        .model-tag.special {
+            background: rgba(255, 170, 0, 0.2);
+            color: #ffaa00;
+            border-color: rgba(255, 170, 0, 0.3);
+        }
+
+        /* Playground Styles */
+        .playground {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .playground-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e0e0e0;
+            padding: 1rem 2rem;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            color: #00d4ff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .input-field:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .input-field::placeholder {
+            color: #888;
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .select-field:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            color: #00d4ff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .file-label:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .file-label.dragover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            transform: scale(1.02);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .generate-btn:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .result-container.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-title {
+            color: #00d4ff;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .result-content {
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .generated-image {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 1rem 0;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00d4ff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .success-message {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .image-preview {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .range-input {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            cursor: pointer;
+        }
+
+        .range-input::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            cursor: pointer;
+            border: none;
+        }
+
+        .range-value {
+            color: #00d4ff;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">🌐 AKGPT & FullAI</div>
+            <ul class="nav-links">
+                <li><a href="#overview">Обзор</a></li>
+                <li><a href="#models">Модели</a></li>
+                <li><a href="#api">API</a></li>
+                <li><a href="#playground">Playground</a></li>
+                <li><a href="#examples">Примеры</a></li>
+                <li><a href="#docs">Документация</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h1>🌐 AKGPT & FullAI</h1>
+                <p>Полная документация ИИ моделей - современный API Gateway и Python библиотека для доступа к передовым моделям искусственного интеллекта с красивой документацией и простым интерфейсом.</p>
+                
+                <div class="badges">
+                    <span class="badge">🐍 Python 3.7+</span>
+                    <span class="badge">📄 MIT License</span>
+                    <span class="badge">📦 PyPI Package</span>
+                    <span class="badge">📈 1K+ Downloads</span>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <a href="#quickstart" class="btn">🚀 Быстрый старт</a>
+                    <a href="#api" class="btn btn-secondary">📖 API Документация</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="🔍 Поиск по документации..." id="searchInput">
+            </div>
+
+            <section id="overview" class="section fade-in">
+                <h2>🚀 AKGPT - Python Библиотека</h2>
+                <p><strong>AKGPT</strong> — это простая и мощная Python-библиотека для взаимодействия с Text-to-Text API. Она предоставляет унифицированный интерфейс для работы с различными моделями ИИ, включая поддержку изображений, потокового вывода и гибких параметров настройки.</p>
+
+                <h3>✨ Особенности AKGPT</h3>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">🎯</span>
+                        <div>
+                            <strong>Простота использования</strong><br>
+                            Минималистичный API для быстрого старта
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🤖</span>
+                        <div>
+                            <strong>12+ моделей ИИ</strong><br>
+                            От Gemini до GPT-5 Nano
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📸</span>
+                        <div>
+                            <strong>Мультимодальность</strong><br>
+                            Поддержка текста и изображений
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔄</span>
+                        <div>
+                            <strong>Потоковый вывод</strong><br>
+                            Real-time генерация текста
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">⚙️</span>
+                        <div>
+                            <strong>Гибкие параметры</strong><br>
+                            Температура, top_p, penalties и другие
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔐</span>
+                        <div>
+                            <strong>Приватные запросы</strong><br>
+                            Защита конфиденциальности
+                        </div>
+                    </div>
+                </div>
+
+                <h3>🌟 FullAI Gateway - Основные возможности</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>✅ <strong>12+ ИИ моделей</strong> - от текстовых до мультимодальных и аудио</li>
+                    <li>✅ <strong>Красивая документация</strong> - полное описание всех моделей и примеров</li>
+                    <li>✅ <strong>Интерактивное тестирование</strong> - попробуйте API прямо в браузере</li>
+                    <li>✅ <strong>Серверная обработка</strong> - высокопроизводительная обработка запросов</li>
+                    <li>✅ <strong>Высокая производительность</strong> - кэширование и оптимизация</li>
+                    <li>✅ <strong>CORS поддержка</strong> - для интеграции с любыми приложениями</li>
+                </ul>
+            </section>
+
+            <section id="models" class="section fade-in">
+                <h2>📚 Доступные модели</h2>
+
+                <h3>🧠 Текстовые модели</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Модель</th>
+                                <th>Провайдер</th>
+                                <th>Описание</th>
+                                <th>Пример запроса</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="model-tag">DeepSeek V3</span></td>
+                                <td>Azure</td>
+                                <td>Универсальная модель для обработки текста</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Напиши%20статью%20об%20ИИ?model=deepseek</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag">DeepSeek R1 0528</span></td>
+                                <td>Azure</td>
+                                <td>Модель с улучшенным логическим мышлением</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Реши%20математическую%20задачу?model=deepseek-r1</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag">Grok-3 Mini</span></td>
+                                <td>Azure</td>
+                                <td>Модель от xAI с инструментами</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Курс%20BTC%20к%20USD?model=grok</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>🖼️ Мультимодальные модели</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Модель</th>
+                                <th>Провайдер</th>
+                                <th>Описание</th>
+                                <th>Пример запроса</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="model-tag multimodal">Mistral Small 3.1</span></td>
+                                <td>Cloudflare</td>
+                                <td>Анализ изображений и текста</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Опиши%20изображение:https://example.com/image.jpg?model=mistral</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag multimodal">OpenAI GPT-4.1 Mini</span></td>
+                                <td>Azure</td>
+                                <td>Обработка текста и изображений</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Придумай%20пост%20для%20соцсети%20к%20фото:https://example.com/photo.jpg?model=openai</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag multimodal">OpenAI O3 (Reasoning)</span></td>
+                                <td>chatwithmono.xyz</td>
+                                <td>Сложные аналитические задачи</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Проанализируй%20график:https://example.com/chart.jpg?model=o3</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>🎙️ Аудио модели</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Модель</th>
+                                <th>Провайдер</th>
+                                <th>Описание</th>
+                                <th>Пример запроса</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="model-tag audio">GPT-4o Audio Preview</span></td>
+                                <td>Azure</td>
+                                <td>13 голосов, аудио ввод/вывод</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Прочитай%20новости?model=openai-audio&voice=nova</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag audio">Hypnosis Tracy</span></td>
+                                <td>Azure</td>
+                                <td>Гипнотические аудио-сессии</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Создай%20гипнотическую%20сессию%20для%20сна?model=hypnosis</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>🔍 Специальные модели</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Модель</th>
+                                <th>Провайдер</th>
+                                <th>Описание</th>
+                                <th>Пример запроса</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="model-tag special">SearchGPT</span></td>
+                                <td>chatwithmono.xyz</td>
+                                <td>Поиск в реальном времени</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Новости%20технологий%20за%20неделю?model=searchgpt</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag special">BIDARA (NASA)</span></td>
+                                <td>Azure</td>
+                                <td>Биомиметический дизайн</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Создай%20дизайн%20в%20стиле%20биомиметики?model=bidara</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag special">MIDIjourney</span></td>
+                                <td>Azure</td>
+                                <td>Генерация MIDI треков</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Создай%20MIDI%20трек%20в%20стиле%20jazz?model=midijourney</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="model-tag special">Evil (Uncensored)</span></td>
+                                <td>Cloudflare</td>
+                                <td>Нефильтрованные ответы</td>
+                                <td><code class="inline-code">https://fullai.vercel.app/Необычный%20сценарий%20для%20фильма?model=evil</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="api" class="section fade-in">
+                <h2>🛠️ API Документация</h2>
+
+                <h3>Базовый URL</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Base URL</span>
+                        <button class="copy-btn" onclick="copyToClipboard('https://text.pollinations.ai')">Копировать</button>
+                    </div>
+                    <pre><code>https://text.pollinations.ai</code></pre>
+                </div>
+
+                <h3>Получить список моделей</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>GET /models</span>
+                        <button class="copy-btn" onclick="copyToClipboard('curl -X GET \"https://text.pollinations.ai/models\" \\\n  -H \"Content-Type: application/json\"')">Копировать</button>
+                    </div>
+                    <pre><code>curl -X GET "https://text.pollinations.ai/models" \
+  -H "Content-Type: application/json"</code></pre>
+                </div>
+
+                <h3>Отправить запрос к модели</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>POST /chat</span>
+                        <button class="copy-btn" onclick="copyToClipboard('curl -X POST \"https://text.pollinations.ai/chat\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \'{\n    \"model\": \"deepseek\",\n    \"messages\": [\n      {\n        \"role\": \"user\",\n        \"content\": \"Привет! Как дела?\"\n      }\n    ]\n  }\'')">Копировать</button>
+                    </div>
+                    <pre><code>curl -X POST "https://text.pollinations.ai/chat" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "deepseek",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Привет! Как дела?"
+      }
+    ]
+  }'</code></pre>
+                </div>
+
+                <h3>Прямые URL запросы</h3>
+                <p>Формат: <code class="inline-code">https://text.pollinations.ai/{запрос}?model={модель}&voice={голос}</code></p>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <h4>🔤 Текстовый запрос</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>URL Example</span>
+                                <button class="copy-btn" onclick="copyToClipboard('https://text.pollinations.ai/Напиши%20статью%20об%20ИИ?model=deepseek')">Копировать</button>
+                            </div>
+                            <pre><code>https://text.pollinations.ai/Напиши%20статью%20об%20ИИ?model=deepseek</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4>🖼️ Запрос с изображением</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>URL Example</span>
+                                <button class="copy-btn" onclick="copyToClipboard('https://text.pollinations.ai/Опиши%20изображение:https://example.com/image.jpg?model=mistral')">Копировать</button>
+                            </div>
+                            <pre><code>https://text.pollinations.ai/Опиши%20изображение:https://example.com/image.jpg?model=mistral</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4>🎙️ Аудио запрос</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>URL Example</span>
+                                <button class="copy-btn" onclick="copyToClipboard('https://text.pollinations.ai/Прочитай%20новости?model=openai-audio&voice=nova')">Копировать</button>
+                            </div>
+                            <pre><code>https://text.pollinations.ai/Прочитай%20новости?model=openai-audio&voice=nova</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Доступные голоса для аудио моделей</h3>
+                <div class="badges">
+                    <span class="badge">alloy</span>
+                    <span class="badge">echo</span>
+                    <span class="badge">fable</span>
+                    <span class="badge">onyx</span>
+                    <span class="badge">nova</span>
+                    <span class="badge">shimmer</span>
+                    <span class="badge">coral</span>
+                    <span class="badge">verse</span>
+                    <span class="badge">ballad</span>
+                    <span class="badge">ash</span>
+                    <span class="badge">sage</span>
+                    <span class="badge">amuch</span>
+                    <span class="badge">dan</span>
+                </div>
+            </section>
+
+            <section id="quickstart" class="section fade-in">
+                <h2>🚀 Быстрый старт</h2>
+
+                <h3>📦 Установка AKGPT</h3>
+                <p>Установите библиотеку через pip:</p>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>pip install</span>
+                        <button class="copy-btn" onclick="copyToClipboard('pip install akgpt')">Копировать</button>
+                    </div>
+                    <pre><code>pip install akgpt</code></pre>
+                </div>
+
+                <p>Или установите последнюю версию с GitHub:</p>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>GitHub install</span>
+                        <button class="copy-btn" onclick="copyToClipboard('pip install git+https://github.com/TETRIX8/akgpt.git')">Копировать</button>
+                    </div>
+                    <pre><code>pip install git+https://github.com/TETRIX8/akgpt.git</code></pre>
+                </div>
+
+                <h3>📌 Основной запрос</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python Example</span>
+                        <button class="copy-btn" onclick="copyToClipboard('from akgpt import AKGPT\n\n# Инициализация клиента\nclient = AKGPT()\n\n# Простой запрос\nprompt = \"Что такое искусственный интеллект?\"\nresult = client.query(prompt)\n\nif result:\n    print(\"Ответ API:\", result)')">Копировать</button>
+                    </div>
+                    <pre><code>from akgpt import AKGPT
+
+# Инициализация клиента
+client = AKGPT()
+
+# Простой запрос
+prompt = "Что такое искусственный интеллект?"
+result = client.query(prompt)
+
+if result:
+    print("Ответ API:", result)</code></pre>
+                </div>
+
+                <h3>⚙️ Запрос с дополнительными параметрами</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Advanced Example</span>
+                        <button class="copy-btn" onclick="copyToClipboard('from akgpt import AKGPT\n\nclient = AKGPT()\n\nprompt = \"Напиши короткое стихотворение о роботах\"\nresult = client.query(\n    prompt=prompt,\n    model=\"mistral\",\n    system=\"Ты талантливый поэт\",\n    temperature=0.8,\n    max_tokens=200\n)\n\nif result:\n    print(\"Стихотворение:\", result)')">Копировать</button>
+                    </div>
+                    <pre><code>from akgpt import AKGPT
+
+client = AKGPT()
+
+prompt = "Напиши короткое стихотворение о роботах"
+result = client.query(
+    prompt=prompt,
+    model="mistral",
+    system="Ты талантливый поэт",
+    temperature=0.8,
+    max_tokens=200
+)
+
+if result:
+    print("Стихотворение:", result)</code></pre>
+                </div>
+            </section>
+
+            <section id="playground" class="section fade-in">
+                <h2>🎮 AI Playground</h2>
+                <p>Интерактивная площадка для тестирования возможностей ИИ моделей. Генерируйте текст, изображения и анализируйте контент в реальном времени.</p>
+
+                <div class="playground">
+                    <div class="playground-tabs">
+                        <button class="tab-btn active" onclick="switchTab('text-generation')">
+                            🔤 Генерация текста
+                        </button>
+                        <button class="tab-btn" onclick="switchTab('image-generation')">
+                            🖼️ Генерация изображений
+                        </button>
+                        <button class="tab-btn" onclick="switchTab('image-analysis')">
+                            🔍 Анализ изображений
+                        </button>
+                    </div>
+
+                    <!-- Text Generation Tab -->
+                    <div id="text-generation" class="tab-content active">
+                        <div class="input-group">
+                            <label class="input-label">💬 Ваш запрос</label>
+                            <textarea 
+                                class="input-field" 
+                                id="textPrompt" 
+                                placeholder="Напишите ваш запрос здесь... Например: 'Напиши короткое стихотворение о космосе' или 'Объясни квантовую физику простыми словами'"
+                            ></textarea>
+                        </div>
+
+                        <div class="settings-grid">
+                            <div class="input-group">
+                                <label class="input-label">🤖 Модель</label>
+                                <select class="select-field" id="textModel">
+                                    <option value="gemini">Gemini 2.5 Flash Lite</option>
+                                    <option value="deepseek">DeepSeek V3</option>
+                                    <option value="deepseek-r1">DeepSeek R1 0528</option>
+                                    <option value="grok">Grok-3 Mini</option>
+                                    <option value="mistral">Mistral Small 3.1</option>
+                                    <option value="openai">GPT-4.1 Mini</option>
+                                    <option value="searchgpt">SearchGPT</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">🎭 Системная роль</label>
+                                <select class="select-field" id="systemRole">
+                                    <option value="">Без роли</option>
+                                    <option value="Ты профессиональный писатель">Писатель</option>
+                                    <option value="Ты опытный программист">Программист</option>
+                                    <option value="Ты учитель, объясняющий сложные темы простыми словами">Учитель</option>
+                                    <option value="Ты креативный маркетолог">Маркетолог</option>
+                                    <option value="Ты научный консультант">Ученый</option>
+                                    <option value="Ты дружелюбный помощник">Помощник</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">🌡️ Температура: <span class="range-value" id="tempValue">0.7</span></label>
+                                <input 
+                                    type="range" 
+                                    class="range-input" 
+                                    id="temperature" 
+                                    min="0" 
+                                    max="2" 
+                                    step="0.1" 
+                                    value="0.7"
+                                    oninput="document.getElementById('tempValue').textContent = this.value"
+                                >
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">📏 Макс. токенов: <span class="range-value" id="tokensValue">150</span></label>
+                                <input 
+                                    type="range" 
+                                    class="range-input" 
+                                    id="maxTokens" 
+                                    min="50" 
+                                    max="1000" 
+                                    step="50" 
+                                    value="150"
+                                    oninput="document.getElementById('tokensValue').textContent = this.value"
+                                >
+                            </div>
+                        </div>
+
+                        <button class="generate-btn" onclick="generateText()">
+                            🚀 Генерировать текст
+                        </button>
+
+                        <div id="textResult" class="result-container">
+                            <div class="result-header">
+                                <div class="result-title">📝 Результат генерации</div>
+                                <div class="result-actions">
+                                    <button class="action-btn" onclick="copyResult('textResult')">📋 Копировать</button>
+                                    <button class="action-btn" onclick="downloadResult('textResult', 'generated-text.txt')">💾 Скачать</button>
+                                </div>
+                            </div>
+                            <div class="result-content" id="textContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Image Generation Tab -->
+                    <div id="image-generation" class="tab-content">
+                        <div class="input-group">
+                            <label class="input-label">🎨 Описание изображения</label>
+                            <textarea 
+                                class="input-field" 
+                                id="imagePrompt" 
+                                placeholder="Опишите изображение, которое хотите создать... Например: 'Красивый закат над океаном в стиле импрессионизма' или 'Футуристический город с летающими машинами'"
+                            ></textarea>
+                        </div>
+
+                        <div class="settings-grid">
+                            <div class="input-group">
+                                <label class="input-label">📐 Размер</label>
+                                <select class="select-field" id="imageSize">
+                                    <option value="1024x1024">Квадрат (1024x1024)</option>
+                                    <option value="1024x768">Альбом (1024x768)</option>
+                                    <option value="768x1024">Портрет (768x1024)</option>
+                                    <option value="1920x1080">Широкий (1920x1080)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">🎭 Стиль</label>
+                                <select class="select-field" id="imageStyle">
+                                    <option value="">Автоматический</option>
+                                    <option value="realistic">Реалистичный</option>
+                                    <option value="anime">Аниме</option>
+                                    <option value="cartoon">Мультяшный</option>
+                                    <option value="oil painting">Масляная живопись</option>
+                                    <option value="watercolor">Акварель</option>
+                                    <option value="digital art">Цифровое искусство</option>
+                                    <option value="photographic">Фотографический</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">🎯 Качество</label>
+                                <select class="select-field" id="imageQuality">
+                                    <option value="standard">Стандартное</option>
+                                    <option value="hd">Высокое (HD)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">🔢 Количество: <span class="range-value" id="imageCountValue">1</span></label>
+                                <input 
+                                    type="range" 
+                                    class="range-input" 
+                                    id="imageCount" 
+                                    min="1" 
+                                    max="4" 
+                                    step="1" 
+                                    value="1"
+                                    oninput="document.getElementById('imageCountValue').textContent = this.value"
+                                >
+                            </div>
+                        </div>
+
+                        <button class="generate-btn" onclick="generateImage()">
+                            🎨 Генерировать изображение
+                        </button>
+
+                        <div id="imageResult" class="result-container">
+                            <div class="result-header">
+                                <div class="result-title">🖼️ Сгенерированные изображения</div>
+                                <div class="result-actions">
+                                    <button class="action-btn" onclick="downloadAllImages()">💾 Скачать все</button>
+                                </div>
+                            </div>
+                            <div class="result-content" id="imageContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Image Analysis Tab -->
+                    <div id="image-analysis" class="tab-content">
+                        <div class="input-group">
+                            <label class="input-label">📸 Загрузите изображение</label>
+                            <div class="file-upload">
+                                <input 
+                                    type="file" 
+                                    class="file-input" 
+                                    id="imageFile" 
+                                    accept="image/*"
+                                    onchange="handleImageUpload(this)"
+                                >
+                                <label for="imageFile" class="file-label" id="fileLabel">
+                                    <span>📁</span>
+                                    <span>Нажмите или перетащите изображение сюда</span>
+                                </label>
+                            </div>
+                            <div id="imagePreview"></div>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">❓ Вопрос об изображении</label>
+                            <textarea 
+                                class="input-field" 
+                                id="analysisPrompt" 
+                                placeholder="Что вы хотите узнать об изображении? Например: 'Опиши что изображено на картинке', 'Какие цвета преобладают?', 'Есть ли на фото люди?'"
+                            >Опиши подробно что изображено на этой картинке</textarea>
+                        </div>
+
+                        <div class="settings-grid">
+                            <div class="input-group">
+                                <label class="input-label">🤖 Модель</label>
+                                <select class="select-field" id="analysisModel">
+                                    <option value="mistral">Mistral Small 3.1</option>
+                                    <option value="openai">GPT-4.1 Mini</option>
+                                    <option value="o3">OpenAI O3 (Reasoning)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-label">🔍 Детализация</label>
+                                <select class="select-field" id="analysisDetail">
+                                    <option value="low">Краткий анализ</option>
+                                    <option value="high">Подробный анализ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="generate-btn" onclick="analyzeImage()" disabled id="analyzeBtn">
+                            🔍 Анализировать изображение
+                        </button>
+
+                        <div id="analysisResult" class="result-container">
+                            <div class="result-header">
+                                <div class="result-title">🔍 Результат анализа</div>
+                                <div class="result-actions">
+                                    <button class="action-btn" onclick="copyResult('analysisResult')">📋 Копировать</button>
+                                    <button class="action-btn" onclick="downloadResult('analysisResult', 'image-analysis.txt')">💾 Скачать</button>
+                                </div>
+                            </div>
+                            <div class="result-content" id="analysisContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="examples" class="section fade-in">
+                <h2>💡 Продвинутые примеры использования</h2>
+
+                <h3>🌊 Потоковая генерация</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Streaming Example</span>
+                        <button class="copy-btn" onclick="copyToClipboard('from akgpt import AKGPT\n\nclient = AKGPT()\n\nprompt = \"Расскажи увлекательную историю о космосе\"\nresponse = client.query(prompt, stream=True)\n\nif hasattr(response, \'__iter__\'):\n    print(\"Потоковый ответ:\")\n    for chunk in response:\n        print(chunk, end=\'\', flush=True)\nelse:\n    print(\"Обычный ответ:\", response)')">Копировать</button>
+                    </div>
+                    <pre><code>from akgpt import AKGPT
+
+client = AKGPT()
+
+prompt = "Расскажи увлекательную историю о космосе"
+response = client.query(prompt, stream=True)
+
+if hasattr(response, '__iter__'):
+    print("Потоковый ответ:")
+    for chunk in response:
+        print(chunk, end='', flush=True)
+else:
+    print("Обычный ответ:", response)</code></pre>
+                </div>
+
+                <h3>🔐 Приватные запросы</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Private Request</span>
+                        <button class="copy-btn" onclick="copyToClipboard('from akgpt import AKGPT\n\nclient = AKGPT()\n\n# Приватный запрос не будет отображаться в публичной ленте\nprompt = \"Конфиденциальная информация о проекте\"\nresult = client.query(prompt, private=True)\n\nif result:\n    print(\"Приватный ответ:\", result)')">Копировать</button>
+                    </div>
+                    <pre><code>from akgpt import AKGPT
+
+client = AKGPT()
+
+# Приватный запрос не будет отображаться в публичной ленте
+prompt = "Конфиденциальная информация о проекте"
+result = client.query(prompt, private=True)
+
+if result:
+    print("Приватный ответ:", result)</code></pre>
+                </div>
+
+                <h3>📊 JSON ответы</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>JSON Response</span>
+                        <button class="copy-btn" onclick="copyToClipboard('import json\nfrom akgpt import AKGPT\n\nclient = AKGPT()\n\nprompt = \"Создай структурированные данные о планетах Солнечной системы\"\nresult = client.query(prompt, json_response=True)\n\nif result:\n    print(\"JSON ответ:\")\n    print(json.dumps(result, indent=2, ensure_ascii=False))')">Копировать</button>
+                    </div>
+                    <pre><code>import json
+from akgpt import AKGPT
+
+client = AKGPT()
+
+prompt = "Создай структурированные данные о планетах Солнечной системы"
+result = client.query(prompt, json_response=True)
+
+if result:
+    print("JSON ответ:")
+    print(json.dumps(result, indent=2, ensure_ascii=False))</code></pre>
+                </div>
+
+                <h3>🎨 Творческая генерация с температурой</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Temperature Control</span>
+                        <button class="copy-btn" onclick="copyToClipboard('from akgpt import AKGPT\n\nclient = AKGPT()\n\nprompt = \"Напиши стихотворение о программировании\"\n\n# Консервативная генерация (более предсказуемая)\nconservative = client.query(prompt, temperature=0.2, model=\"gemini\")\n\n# Креативная генерация (более случайная)\ncreative = client.query(prompt, temperature=1.2, model=\"gemini\")\n\nprint(\"Консервативное стихотворение:\")\nprint(conservative)\nprint(\"\\n\" + \"=\"*50 + \"\\n\")\nprint(\"Креативное стихотворение:\")\nprint(creative)')">Копировать</button>
+                    </div>
+                    <pre><code>from akgpt import AKGPT
+
+client = AKGPT()
+
+prompt = "Напиши стихотворение о программировании"
+
+# Консервативная генерация (более предсказуемая)
+conservative = client.query(prompt, temperature=0.2, model="gemini")
+
+# Креативная генерация (более случайная)
+creative = client.query(prompt, temperature=1.2, model="gemini")
+
+print("Консервативное стихотворение:")
+print(conservative)
+print("\n" + "="*50 + "\n")
+print("Креативное стихотворение:")
+print(creative)</code></pre>
+                </div>
+            </section>
+
+            <section id="docs" class="section fade-in">
+                <h2>🧠 Полный список параметров метода query</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Тип</th>
+                                <th>По умолчанию</th>
+                                <th>Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code class="inline-code">prompt</code></td>
+                                <td>str</td>
+                                <td><span class="highlight">обязательный</span></td>
+                                <td>Входной текстовый промпт</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">model</code></td>
+                                <td>str</td>
+                                <td>"gemini"</td>
+                                <td>Модель для генерации</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">system</code></td>
+                                <td>str</td>
+                                <td>None</td>
+                                <td>Системный промпт (роль модели)</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">temperature</code></td>
+                                <td>float</td>
+                                <td>0.7</td>
+                                <td>Контроль случайности (0.0 - 3.0)</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">top_p</code></td>
+                                <td>float</td>
+                                <td>1.0</td>
+                                <td>Ядерная выборка (0.0 - 1.0)</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">max_tokens</code></td>
+                                <td>int</td>
+                                <td>150</td>
+                                <td>Максимальное количество токенов</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">presence_penalty</code></td>
+                                <td>float</td>
+                                <td>0.0</td>
+                                <td>Штраф за повторяющиеся токены (-2.0 до 2.0)</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">frequency_penalty</code></td>
+                                <td>float</td>
+                                <td>0.0</td>
+                                <td>Штраф за частоту токенов (-2.0 до 2.0)</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">seed</code></td>
+                                <td>int</td>
+                                <td>None</td>
+                                <td>Сид для воспроизводимых результатов</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">json_response</code></td>
+                                <td>bool</td>
+                                <td>False</td>
+                                <td>Вернуть ответ в формате JSON</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">stream</code></td>
+                                <td>bool</td>
+                                <td>False</td>
+                                <td>Потоковая передача (SSE)</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">private</code></td>
+                                <td>bool</td>
+                                <td>False</td>
+                                <td>Приватный запрос</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline-code">referrer</code></td>
+                                <td>str</td>
+                                <td>None</td>
+                                <td>Источник запроса</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>🔧 Технические параметры</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Модель</th>
+                                <th>Провайдер</th>
+                                <th>Входные данные</th>
+                                <th>Выходные данные</th>
+                                <th>Инструменты</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DeepSeek V3</td>
+                                <td>Azure</td>
+                                <td>Текст</td>
+                                <td>Текст</td>
+                                <td><span class="status-error">❌</span></td>
+                            </tr>
+                            <tr>
+                                <td>DeepSeek R1</td>
+                                <td>Azure</td>
+                                <td>Текст</td>
+                                <td>Текст</td>
+                                <td><span class="status-error">❌</span></td>
+                            </tr>
+                            <tr>
+                                <td>Grok-3 Mini</td>
+                                <td>Azure</td>
+                                <td>Текст</td>
+                                <td>Текст</td>
+                                <td><span class="status-online">✅</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mistral Small 3.1</td>
+                                <td>Cloudflare</td>
+                                <td>Текст + Изобр.</td>
+                                <td>Текст</td>
+                                <td><span class="status-online">✅</span></td>
+                            </tr>
+                            <tr>
+                                <td>GPT-4.1 Mini</td>
+                                <td>Azure</td>
+                                <td>Текст + Изобр.</td>
+                                <td>Текст</td>
+                                <td><span class="status-online">✅</span></td>
+                            </tr>
+                            <tr>
+                                <td>GPT-4o Audio</td>
+                                <td>Azure</td>
+                                <td>Текст + Аудио</td>
+                                <td>Аудио + Текст</td>
+                                <td><span class="status-online">✅</span></td>
+                            </tr>
+                            <tr>
+                                <td>SearchGPT</td>
+                                <td>chatwithmono</td>
+                                <td>Текст</td>
+                                <td>Текст</td>
+                                <td><span class="status-online">✅</span></td>
+                            </tr>
+                            <tr>
+                                <td>O3</td>
+                                <td>chatwithmono</td>
+                                <td>Текст + Изобр.</td>
+                                <td>Текст</td>
+                                <td><span class="status-online">✅</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="section fade-in">
+                <h2>🔍 Мониторинг и статус</h2>
+
+                <h3>Health Check</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>GET /health</span>
+                        <button class="copy-btn" onclick="copyToClipboard('curl -X GET \"https://text.pollinations.ai/health\"')">Копировать</button>
+                    </div>
+                    <pre><code>curl -X GET "https://text.pollinations.ai/health"</code></pre>
+                </div>
+
+                <h3>API Status</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>GET /api/status</span>
+                        <button class="copy-btn" onclick="copyToClipboard('curl -X GET \"https://text.pollinations.ai/api/status\"')">Копировать</button>
+                    </div>
+                    <pre><code>curl -X GET "https://text.pollinations.ai/api/status"</code></pre>
+                </div>
+
+                <h4>Пример ответа:</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>JSON Response</span>
+                        <button class="copy-btn" onclick="copyToClipboard('{\n  \"service\": \"FullAI Gateway\",\n  \"status\": \"online\",\n  \"target_api\": {\n    \"url\": \"https://text.pollinations.ai\",\n    \"status\": \"online\"\n  },\n  \"features\": [\n    \"Text Models (DeepSeek, Grok, GPT)\",\n    \"Multimodal Models (Mistral, GPT-4.1)\",\n    \"Audio Models (GPT-4o Audio)\",\n    \"Special Models (SearchGPT, BIDARA, MIDIjourney)\"\n  ],\n  \"supported_methods\": [\"GET\", \"POST\", \"PUT\", \"DELETE\", \"PATCH\", \"OPTIONS\"]\n}')">Копировать</button>
+                    </div>
+                    <pre><code>{
+  "service": "FullAI Gateway",
+  "status": "online",
+  "target_api": {
+    "url": "https://text.pollinations.ai",
+    "status": "online"
+  },
+  "features": [
+    "Text Models (DeepSeek, Grok, GPT)",
+    "Multimodal Models (Mistral, GPT-4.1)",
+    "Audio Models (GPT-4o Audio)",
+    "Special Models (SearchGPT, BIDARA, MIDIjourney)"
+  ],
+  "supported_methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
+}</code></pre>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🔗 Ссылки</h4>
+                    <a href="https://github.com/TETRIX8/akgpt">GitHub репозиторий</a>
+                    <a href="https://pypi.org/project/akgpt/">PyPI пакет</a>
+                    <a href="https://github.com/TETRIX8/akgpt#readme">Документация AKGPT</a>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Поддержка</h4>
+                    <a href="https://github.com/TETRIX8/akgpt/issues">Сообщить об ошибке</a>
+                    <a href="https://github.com/TETRIX8/akgpt/discussions">Предложить улучшение</a>
+                    <a href="mailto:support@akgpt.dev">Связаться с нами</a>
+                </div>
+                <div class="footer-section">
+                    <h4>🏷️ Теги</h4>
+                    <p style="font-size: 0.9rem; color: #888;">
+                        #AI #ArtificialIntelligence #MachineLearning #NLP #Python #API #GPT #Gemini #Mistral #OpenAI #TextGeneration #ChatBot #LanguageModel #DeepLearning #MultiModal #Streaming #AsyncAI #PythonLibrary #SDK #APIClient #AITools #MLOps #DataScience #NeuralNetworks #Transformer
+                    </p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <p>🌟 <strong>Создано с ❤️ командой <a href="https://github.com/TETRIX8" style="color: #00d4ff;">TETRIX8</a></strong></p>
+                <p style="margin-top: 1rem; color: #888;">AKGPT & FullAI - Ваш мост к миру искусственного интеллекта! 🚀</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Show success feedback
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Скопировано!';
+                btn.style.background = 'rgba(0, 255, 136, 0.3)';
+                btn.style.borderColor = '#00ff88';
+                btn.style.color = '#00ff88';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'rgba(0, 212, 255, 0.2)';
+                    btn.style.borderColor = '#00d4ff';
+                    btn.style.color = '#00d4ff';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Ошибка копирования: ', err);
+            });
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const sections = document.querySelectorAll('.section');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm) || searchTerm === '') {
+                    section.style.display = 'block';
+                    section.style.opacity = '1';
+                } else {
+                    section.style.display = 'none';
+                    section.style.opacity = '0';
+                }
+            });
+
+            // Highlight search terms
+            if (searchTerm) {
+                highlightSearchTerms(searchTerm);
+            } else {
+                removeHighlights();
+            }
+        });
+
+        function highlightSearchTerms(term) {
+            removeHighlights();
+            
+            const walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+
+            const textNodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+            }
+
+            textNodes.forEach(textNode => {
+                const parent = textNode.parentNode;
+                if (parent.tagName !== 'SCRIPT' && parent.tagName !== 'STYLE') {
+                    const text = textNode.textContent;
+                    const regex = new RegExp(`(${term})`, 'gi');
+                    if (regex.test(text)) {
+                        const highlightedText = text.replace(regex, '<mark style="background: rgba(255, 255, 0, 0.3); color: inherit;">$1</mark>');
+                        const wrapper = document.createElement('span');
+                        wrapper.innerHTML = highlightedText;
+                        parent.replaceChild(wrapper, textNode);
+                    }
+                }
+            });
+        }
+
+        function removeHighlights() {
+            const highlights = document.querySelectorAll('mark');
+            highlights.forEach(mark => {
+                const parent = mark.parentNode;
+                parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                parent.normalize();
+            });
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add hover effects to tables
+        document.querySelectorAll('table tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(0, 212, 255, 0.1)';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.background = '';
+            });
+        });
+
+        // Add click effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-5px) scale(1)';
+                }, 150);
+            });
+        });
+
+        // Dynamic background particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = 'rgba(0, 212, 255, 0.5)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '-1';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = '-10px';
+            
+            document.body.appendChild(particle);
+            
+            const duration = Math.random() * 3000 + 2000;
+            const drift = (Math.random() - 0.5) * 100;
+            
+            particle.animate([
+                { transform: 'translateY(0px) translateX(0px)', opacity: 0 },
+                { transform: `translateY(${window.innerHeight + 10}px) translateX(${drift}px)`, opacity: 1 }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            }).onfinish = () => {
+                particle.remove();
+            };
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Add typing effect to hero title
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+
+        function typeWriter(text, element, speed = 100) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Start typing effect when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                typeWriter(originalText, heroTitle, 80);
+            }, 500);
+        });
+
+        // Add interactive model tags
+        document.querySelectorAll('.model-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 212, 255, 0.3)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Add progress indicator for long code blocks
+        document.querySelectorAll('pre').forEach(pre => {
+            if (pre.textContent.length > 500) {
+                const progressBar = document.createElement('div');
+                progressBar.style.height = '2px';
+                progressBar.style.background = 'linear-gradient(45deg, #00d4ff, #ff00ff)';
+                progressBar.style.width = '0%';
+                progressBar.style.transition = 'width 0.3s ease';
+                progressBar.style.marginBottom = '10px';
+                
+                pre.parentNode.insertBefore(progressBar, pre);
+                
+                pre.addEventListener('scroll', function() {
+                    const scrollPercent = (this.scrollLeft / (this.scrollWidth - this.clientWidth)) * 100;
+                    progressBar.style.width = scrollPercent + '%';
+                });
+            }
+        });
+
+        // Playground functionality
+        let uploadedImageData = null;
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Text generation
+        async function generateText() {
+            const prompt = document.getElementById('textPrompt').value.trim();
+            if (!prompt) {
+                showError('textResult', 'Пожалуйста, введите запрос для генерации текста');
+                return;
+            }
+
+            const model = document.getElementById('textModel').value;
+            const systemRole = document.getElementById('systemRole').value;
+            const temperature = document.getElementById('temperature').value;
+            const maxTokens = document.getElementById('maxTokens').value;
+
+            const generateBtn = event.target;
+            const originalText = generateBtn.innerHTML;
+            generateBtn.innerHTML = '<span class="loading-spinner"></span>Генерирую...';
+            generateBtn.disabled = true;
+
+            try {
+                // Simulate API call (replace with actual API endpoint)
+                const response = await simulateTextGeneration(prompt, model, systemRole, temperature, maxTokens);
+                
+                document.getElementById('textContent').innerHTML = formatTextResponse(response);
+                document.getElementById('textResult').classList.add('show');
+                
+                showSuccess('textResult', 'Текст успешно сгенерирован!');
+            } catch (error) {
+                showError('textResult', 'Ошибка при генерации текста: ' + error.message);
+            } finally {
+                generateBtn.innerHTML = originalText;
+                generateBtn.disabled = false;
+            }
+        }
+
+        // Image generation
+        async function generateImage() {
+            const prompt = document.getElementById('imagePrompt').value.trim();
+            if (!prompt) {
+                showError('imageResult', 'Пожалуйста, введите описание изображения');
+                return;
+            }
+
+            const size = document.getElementById('imageSize').value;
+            const style = document.getElementById('imageStyle').value;
+            const quality = document.getElementById('imageQuality').value;
+            const count = document.getElementById('imageCount').value;
+
+            const generateBtn = event.target;
+            const originalText = generateBtn.innerHTML;
+            generateBtn.innerHTML = '<span class="loading-spinner"></span>Генерирую...';
+            generateBtn.disabled = true;
+
+            try {
+                // Simulate API call (replace with actual API endpoint)
+                const images = await simulateImageGeneration(prompt, size, style, quality, count);
+                
+                document.getElementById('imageContent').innerHTML = formatImageResponse(images);
+                document.getElementById('imageResult').classList.add('show');
+                
+                showSuccess('imageResult', `Успешно сгенерировано ${count} изображение(й)!`);
+            } catch (error) {
+                showError('imageResult', 'Ошибка при генерации изображения: ' + error.message);
+            } finally {
+                generateBtn.innerHTML = originalText;
+                generateBtn.disabled = false;
+            }
+        }
+
+        // Image analysis
+        async function analyzeImage() {
+            if (!uploadedImageData) {
+                showError('analysisResult', 'Пожалуйста, загрузите изображение для анализа');
+                return;
+            }
+
+            const prompt = document.getElementById('analysisPrompt').value.trim();
+            const model = document.getElementById('analysisModel').value;
+            const detail = document.getElementById('analysisDetail').value;
+
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const originalText = analyzeBtn.innerHTML;
+            analyzeBtn.innerHTML = '<span class="loading-spinner"></span>Анализирую...';
+            analyzeBtn.disabled = true;
+
+            try {
+                // Simulate API call (replace with actual API endpoint)
+                const analysis = await simulateImageAnalysis(uploadedImageData, prompt, model, detail);
+                
+                document.getElementById('analysisContent').innerHTML = formatTextResponse(analysis);
+                document.getElementById('analysisResult').classList.add('show');
+                
+                showSuccess('analysisResult', 'Анализ изображения завершен!');
+            } catch (error) {
+                showError('analysisResult', 'Ошибка при анализе изображения: ' + error.message);
+            } finally {
+                analyzeBtn.innerHTML = originalText;
+                analyzeBtn.disabled = false;
+            }
+        }
+
+        // Handle image upload
+        function handleImageUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                alert('Пожалуйста, выберите файл изображения');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedImageData = e.target.result;
+                
+                const preview = document.getElementById('imagePreview');
+                preview.innerHTML = `
+                    <img src="${e.target.result}" class="image-preview" alt="Загруженное изображение">
+                    <div class="success-message">Изображение загружено: ${file.name}</div>
+                `;
+                
+                document.getElementById('analyzeBtn').disabled = false;
+                document.getElementById('fileLabel').innerHTML = `
+                    <span>✅</span>
+                    <span>Изображение загружено: ${file.name}</span>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Drag and drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileLabel = document.getElementById('fileLabel');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                fileLabel.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                fileLabel.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                fileLabel.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight(e) {
+                fileLabel.classList.add('dragover');
+            }
+
+            function unhighlight(e) {
+                fileLabel.classList.remove('dragover');
+            }
+
+            fileLabel.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length > 0) {
+                    document.getElementById('imageFile').files = files;
+                    handleImageUpload(document.getElementById('imageFile'));
+                }
+            }
+        });
+
+        // Utility functions
+        function showError(containerId, message) {
+            const container = document.getElementById(containerId);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            container.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 5000);
+        }
+
+        function showSuccess(containerId, message) {
+            const container = document.getElementById(containerId);
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.textContent = message;
+            container.appendChild(successDiv);
+            
+            setTimeout(() => {
+                if (successDiv.parentNode) {
+                    successDiv.parentNode.removeChild(successDiv);
+                }
+            }, 3000);
+        }
+
+        function copyResult(containerId) {
+            const content = document.querySelector(`#${containerId} .result-content`).textContent;
+            navigator.clipboard.writeText(content).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Скопировано!';
+                btn.style.background = 'rgba(0, 255, 136, 0.3)';
+                btn.style.borderColor = '#00ff88';
+                btn.style.color = '#00ff88';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'rgba(0, 212, 255, 0.2)';
+                    btn.style.borderColor = '#00d4ff';
+                    btn.style.color = '#00d4ff';
+                }, 2000);
+            });
+        }
+
+        function downloadResult(containerId, filename) {
+            const content = document.querySelector(`#${containerId} .result-content`).textContent;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadAllImages() {
+            const images = document.querySelectorAll('#imageContent .generated-image');
+            images.forEach((img, index) => {
+                const a = document.createElement('a');
+                a.href = img.src;
+                a.download = `generated-image-${index + 1}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+        }
+
+        // Simulation functions (replace with actual API calls)
+        async function simulateTextGeneration(prompt, model, systemRole, temperature, maxTokens) {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Simulate different responses based on model
+            const responses = {
+                'gemini': `Ответ от Gemini 2.5 Flash Lite:\n\n${prompt}\n\nЭто демонстрационный ответ, сгенерированный с параметрами:\n- Модель: ${model}\n- Системная роль: ${systemRole || 'Не задана'}\n- Температура: ${temperature}\n- Макс. токенов: ${maxTokens}`,
+                'deepseek': `DeepSeek V3 отвечает:\n\n${prompt}\n\nЭто пример ответа от модели DeepSeek с высокой точностью и логическим мышлением.`,
+                'openai': `GPT-4.1 Mini генерирует:\n\n${prompt}\n\nОтвет создан с использованием передовых возможностей OpenAI.`
+            };
+            
+            return responses[model] || responses['gemini'];
+        }
+
+        async function simulateImageGeneration(prompt, size, style, quality, count) {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            
+            // Generate placeholder images
+            const images = [];
+            for (let i = 0; i < count; i++) {
+                const [width, height] = size.split('x');
+                images.push({
+                    url: `https://picsum.photos/${width}/${height}?random=${Date.now() + i}`,
+                    prompt: prompt,
+                    style: style,
+                    quality: quality
+                });
+            }
+            
+            return images;
+        }
+
+        async function simulateImageAnalysis(imageData, prompt, model, detail) {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 2500));
+            
+            const analyses = {
+                'mistral': `Анализ от Mistral Small 3.1:\n\n${prompt}\n\nНа изображении видно... (это демонстрационный анализ). Модель Mistral обеспечивает точный анализ изображений с высокой детализацией.`,
+                'openai': `GPT-4.1 Mini анализирует:\n\n${prompt}\n\nИзображение содержит... (демонстрационный результат). OpenAI предоставляет глубокий анализ визуального контента.`,
+                'o3': `OpenAI O3 (Reasoning) рассуждает:\n\n${prompt}\n\nПроводя детальный анализ изображения... (пример аналитического ответа с логическими выводами).`
+            };
+            
+            return analyses[model] || analyses['mistral'];
+        }
+
+        function formatTextResponse(text) {
+            return `<div style="white-space: pre-wrap; font-family: inherit;">${text}</div>`;
+        }
+
+        function formatImageResponse(images) {
+            return images.map((img, index) => `
+                <div style="margin-bottom: 2rem;">
+                    <img src="${img.url}" class="generated-image" alt="Сгенерированное изображение ${index + 1}">
+                    <div style="margin-top: 1rem; color: #888; font-size: 0.9rem;">
+                        <strong>Промпт:</strong> ${img.prompt}<br>
+                        <strong>Стиль:</strong> ${img.style || 'Автоматический'}<br>
+                        <strong>Качество:</strong> ${img.quality}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        console.log('🌐 AKGPT & FullAI Documentation loaded successfully! 🚀');
+    </script>
+</body>
+</html>
